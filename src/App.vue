@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <Header></Header>
+    <NavBar></NavBar>
   </div>
   <router-view/>
 </template>
@@ -16,7 +16,7 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 5px 30px 30px 30px;
 }
 
 #nav a {
@@ -25,6 +25,13 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #63734A;
 }
 </style>
+<script>
+import NavBar from "@/components/NavBar";
+import Header from "@/components/Header";
+export default {
+  components: {Header, NavBar}
+}
+</script>
