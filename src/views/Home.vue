@@ -2,20 +2,43 @@
   <div id="container">
     <section>Expenses</section>
     <ul>
-      <li v-for="expense in expenses">{{ expense }}</li>
+      <li v-for="expense in expenses">${{ expense.cost }} - {{ expense.category }}</li>
     </ul>
+    <input-field @expenseEntered="expenseEntered"></input-field>
   </div>
 </template>
 
 <script lang="ts">
 import {ref} from "vue";
+import InputField from "@/components/InputField.vue";
 export default {
   name: 'Home',
+  components: {InputField},
   setup() {
-    const expenses = ref([100, 200, 300])
+    const expense1 = {
+      cost: 100,
+      category: 'Food'
+    }
+
+    const expense2 = {
+      cost: 200,
+      category: 'Gas'
+    }
+
+    const expense3 = {
+      cost: 300,
+      category: 'Housing'
+    }
+
+    const expenses = ref([expense1, expense2, expense3])
+
+    function expenseEntered(expense: any){
+      expenses.value.push(expense)
+    }
 
     return {
-      expenses
+      expenses,
+      expenseEntered
     }
   }
 }
@@ -33,5 +56,9 @@ export default {
 ul {
   list-style-type: none;
   padding: 0;
+}
+
+section {
+  font-weight: bold;
 }
 </style>
