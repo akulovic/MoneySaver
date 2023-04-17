@@ -1,4 +1,4 @@
-# testapp
+# MoneySaver
 
 ## Project setup
 ```
