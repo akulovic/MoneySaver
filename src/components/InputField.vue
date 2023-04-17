@@ -1,5 +1,5 @@
 <template>
-  <form id="container">
+  <form id="input-container">
     <div>
       <label for="expenseTitle">Expense Title</label>
       <select id="expenseTitle" name="expenseTitle" v-model="expenseTitle">
@@ -71,10 +71,13 @@ export default {
 </script>
 
 <style scoped>
-#container {
+#input-container {
+  border: 2px solid #598C58;
+  border-radius: 5px;
   margin: 10px;
   padding: 10px;
   width: 100%;
+  background-color: #BFCC98;
 }
 
 label {
