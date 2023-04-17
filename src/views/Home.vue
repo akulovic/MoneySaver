@@ -5,6 +5,7 @@
       <li v-for="expense in expenses">${{ expense.cost }} - {{ expense.category }}</li>
     </ul>
     <input-field @expenseEntered="expenseEntered"></input-field>
+    <div>Hello</div>
   </div>
 </template>
 
