@@ -1,39 +1,54 @@
 <template>
   <div id="container">
-    <section>Expenses</section>
-    <ul>
-      <li v-for="expense in expenses">${{ expense.cost }} - {{ expense.category }}</li>
-    </ul>
-    <input-field @expenseEntered="expenseEntered"></input-field>
-    <div>Hello</div>
+    <div id="data-container">
+      <section id="form-container">
+        <h4>Expense Form</h4>
+        <input-field style="height: 20%" @expenseEntered="expenseEntered"></input-field>
+      </section>
+      <section id="card-container">
+        <h4>Expenses</h4>
+        <div v-for="expense in expenses">
+          <Card :title="expense.category" :date="expense.date" :item="expense.item" :amount="expense.cost"/>
+        </div>
+      </section>
+    </div>
+
   </div>
 </template>
 
 <script lang="ts">
 import {ref} from "vue";
 import InputField from "@/components/InputField.vue";
+import Card from "@/components/Card.vue";
 export default {
   name: 'Home',
-  components: {InputField},
+  components: {Card, InputField},
   setup() {
     const expense1 = {
       cost: 100,
-      category: 'Food'
+      category: 'Food',
+      item: 'Chips',
+      date: '3/22/2023'
     }
 
     const expense2 = {
       cost: 200,
-      category: 'Gas'
+      category: 'Gas',
+      item: 'Petrol',
+      date: '3/23/2023'
     }
 
     const expense3 = {
       cost: 300,
-      category: 'Housing'
+      category: 'Housing',
+      item: 'Rent',
+      date: '4/11/2013'
     }
 
     const expenses = ref([expense1, expense2, expense3])
 
     function expenseEntered(expense: any){
+      expense.date = new Date(expense.date).toLocaleDateString('en-US')
       expenses.value.push(expense)
     }
 
@@ -54,12 +69,16 @@ export default {
   background-color: #DDE8B3;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+#data-container{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
+
 
 section {
   font-weight: bold;
+  font-size: large;
 }
 </style>

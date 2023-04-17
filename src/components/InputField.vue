@@ -9,6 +9,10 @@
       </select>
     </div>
     <div>
+      <label for="expenseItem">Expense Item</label>
+      <input id="expenseItem" type="text" v-model="expenseItem">
+    </div>
+    <div>
       <label for="expenseAmount">Expense Amount</label>
       <input id="expenseAmount" type="text" v-model="expenseAmount">
     </div>
@@ -16,7 +20,7 @@
       <label for="expenseDate">Expense Date</label>
       <input id="expenseDate" type="date" v-model="expenseDate">
     </div>
-    <button @click="enterExpense" type="submit">Enter</button>
+    <button @click="enterExpense" type="submit">Add Expense</button>
   </form>
 </template>
 
@@ -30,27 +34,34 @@ export default {
 
   setup(props: any, context: any){
     const expenseTitle = ref('')
+    const expenseItem = ref('')
     const expenseAmount = ref(0)
     const expenseDate = ref(new Date())
 
     function enterExpense(event: any) {
-      if (expenseTitle.value && expenseAmount.value && expenseDate.value){
+      if (expenseTitle.value && expenseItem && expenseAmount.value && expenseDate.value){
         event.preventDefault()
         const expense = {
-          cost: expenseAmount.value,
           category: expenseTitle.value,
+          item: expenseItem.value,
+          cost: expenseAmount.value,
           date: expenseDate.value
         }
         context.emit('expenseEntered', expense)
-        // reset form
-        expenseTitle.value = ''
-        expenseAmount.value = 0
-        expenseDate.value = new Date()
+        resetForm()
       }
+    }
+
+    function resetForm() {
+      expenseTitle.value = ''
+      expenseItem.value = ''
+      expenseAmount.value = 0
+      expenseDate.value = new Date()
     }
 
     return {
       expenseTitle,
+      expenseItem,
       expenseAmount,
       expenseDate,
       enterExpense
@@ -63,7 +74,7 @@ export default {
 #container {
   margin: 10px;
   padding: 10px;
-  width: 40%;
+  width: 100%;
 }
 
 label {
