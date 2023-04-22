@@ -74,9 +74,8 @@ export default {
 #input-container {
   border: 2px solid #598C58;
   border-radius: 5px;
-  margin: 10px;
   padding: 10px;
-  width: 100%;
+  width: auto;
   background-color: #BFCC98;
 }
 

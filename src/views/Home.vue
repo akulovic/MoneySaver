@@ -1,18 +1,15 @@
 <template>
   <div id="container">
-    <div id="data-container">
-      <section id="form-container">
-        <h4>Expense Form</h4>
-        <input-field style="height: 20%" @expenseEntered="expenseEntered"></input-field>
-      </section>
-      <section id="card-container">
-        <h4>Expenses</h4>
-        <div v-for="expense in expenses">
-          <Card :title="expense.category" :date="expense.date" :item="expense.item" :amount="expense.cost"/>
-        </div>
-      </section>
+    <div id="form-container">
+      <h4>Expense Form</h4>
+      <input-field style="height: 20%" @expenseEntered="expenseEntered"></input-field>
     </div>
-
+    <div id="card-container">
+      <h4>Expenses</h4>
+      <div v-for="expense in expenses">
+        <Card :title="expense.category" :date="expense.date" :item="expense.item" :amount="expense.cost"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -67,15 +64,27 @@ export default {
   box-shadow: 0 10px 20px rgba(0,0,0,0.19);
   border-radius: 5px;
   background-color: #DDE8B3;
-}
-
-#data-container{
-  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
+@media screen and (max-width: 700px) {
+  #container{
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+#form-container{
+  width: 45%;
+  float: left;
+}
+
+#card-container{
+  width: 45%;
+  float: right;
+}
 
 section {
   font-weight: bold;

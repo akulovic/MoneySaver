@@ -20,7 +20,7 @@ export default {
   border-radius: 10px;
   background-color: #DDE8B3;
   padding: 8px 100px 8px 100px;
-  width: 35%;
+  width: auto;
   height: 25%;
   margin: 3px;
 }
